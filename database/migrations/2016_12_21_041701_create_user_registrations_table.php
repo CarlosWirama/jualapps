@@ -13,8 +13,12 @@ class CreateUserRegistrationsTable extends Migration
     public function up()
     {
         Schema::create('user_registrations', function (Blueprint $table) {
-            $table->bigIncrements('user_id');
+            $table->bigInteger('user_id')->unsigned()->primary();
             $table->timestamp('created_at');
+        });
+
+        Schema::table('user_registrations', function ($table) {
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
 

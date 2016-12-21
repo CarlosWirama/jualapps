@@ -24,15 +24,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    
-
     /**
      * Set PrimaryKey
      */
-    $primaryKey = 'user_id';
+    protected $primaryKey = 'user_id';
 
     /**
-     * this table doesn't need timestamp
+     * this table doesn't need timestamps
      */
-    $timestamps = false;
+    public $timestamps = false;
 }

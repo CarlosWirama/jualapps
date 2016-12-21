@@ -14,13 +14,17 @@ class CreateProductPackagesTable extends Migration
     {
         Schema::create('product_packages', function (Blueprint $table) {
             $table->increments('product_package_id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->string('package_name');
             $table->text('description');
             $table->integer('price');
-            $table->boolean('on_sale');
-            $table->boolean('is_active');
+            $table->boolean('on_sale')->default(true);
+            $table->boolean('is_active')->default(true);
             $table->timestamp('created_at');
+        });
+
+        Schema::table('product_packages', function ($table) {
+            $table->foreign('product_id')->references('product_id')->on('products');
         });
     }
 

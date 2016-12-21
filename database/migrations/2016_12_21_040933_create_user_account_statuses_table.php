@@ -14,10 +14,15 @@ class CreateUserAccountStatusesTable extends Migration
     {
         Schema::create('user_account_statuses', function (Blueprint $table) {
             $table->bigIncrements('user_account_status_id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('account_status');
             $table->timestamp('created_at');
         });
+        
+        Schema::table('user_account_statuses', function ($table) {
+            $table->foreign('user_id')->references('user_id')->on('users');
+        });
+
     }
 
     /**

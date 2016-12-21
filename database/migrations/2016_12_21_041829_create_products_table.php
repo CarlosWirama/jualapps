@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
             $table->increments('product_id');
             $table->string('name');
             $table->text('description');
-            $table->boolean('on_sale');
+            $table->boolean('on_sale')->default(true);
             $table->timestamp('created_at');
         });
     }

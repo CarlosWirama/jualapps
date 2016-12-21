@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
+use App\UserDetail;
+use App\UserRegistration;
+use App\UserAccountStatus;
+use App\UserLogin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -52,6 +57,12 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|numeric',
+            'postalcode' => 'required|numeric',
+            'gender' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'birthdate' => 'required|date',
         ]);
     }
 
@@ -63,10 +74,51 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'account_status' => 'registered',
         ]);
+
+        UserDetail::create([
+            'user_id' => $user->user_id,
+            'phone' => $data['phone'],
+            'postalcode' => $data['postalcode'],
+            'gender' => $data['gender'],
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'birthdate' => $data['birthdate'],
+        ]);
+
+        UserRegistration::create([
+            'user_id' => $user->user_id,
+        ]);
+
+        UserAccountStatus::create([
+            'user_id' => $user->user_id,
+            'account_status' => 'registered',
+        ]);
+
+        UserLogin::create([
+            'user_id' => $user->user_id,
+            'login_ip' => \Request::ip(),
+        ]);
+
+        return $user;
+    }
+
+//// TODO: not tested
+    /**
+     * Handlecan authentication attempt.
+     *
+     * @return Response
+     */
+    public function authenticate()
+    {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'account_status' => 'verified'])) {
+            // Authentication passed...
+            return redirect()->intended('dashboard');
+        }
     }
 }

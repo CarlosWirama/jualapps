@@ -14,9 +14,13 @@ class CreateUserLoginsTable extends Migration
     {
         Schema::create('user_logins', function (Blueprint $table) {
             $table->bigIncrements('user_login_id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->ipAddress('login_ip');
             $table->timestamp('created_at');
+        });
+        
+        Schema::table('user_logins', function ($table) {
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
 
