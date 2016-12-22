@@ -69,7 +69,7 @@
                         <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
                             <label for="birthdate" class="col-md-4 control-label">Birth Date</label>
                             <div class="col-md-6">
-                                <input id="birthdate" type="text" class="form-control" name="birthdate">
+                                <input id="birthdate" type="date" class="form-control" name="birthdate">
 
                                 @if ($errors->has('birthdate'))
                                     <span class="help-block">
@@ -83,8 +83,16 @@
                             <label for="gender" class="col-md-4 control-label">Gender</label>
 
                             <div class="col-md-6">
-                                <input id="gender" type="text" class="form-control" name="gender">
-
+                                <div class="radio">
+                                    <label >
+                                        <input type="radio" name="gender" value="male">
+                                        Male
+                                    </label>
+                                    <label >
+                                        <input type="radio" name="gender" value="female">
+                                        Female
+                                    </label>
+                                </div>
                                 @if ($errors->has('gender'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('gender') }}</strong>

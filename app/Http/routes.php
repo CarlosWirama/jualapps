@@ -18,3 +18,28 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(["prefix"=>"API", "namespace"=>"API"],function(){
+    Route::group(["prefix"=>"/user"],function(){
+        Route::get('/','UserController@allUser');
+        Route::get('/package','UserController@usersWithPackages');
+        Route::get('/detail','UserController@Details');
+        Route::get('/userDetail','UserController@usersDetail');
+        Route::get('/{id}',"UserController@userById");
+        Route::get('/package/{id}','UserController@userWithPackages');
+        Route::get('/detail/{id}','UserController@Detail');
+        Route::get('/userDetail/{id}','UserController@userDetail');
+
+
+    });
+    Route::group(['prefix'=>'/product'],function (){
+        Route::get('/','ProductController@products');
+        Route::get('/package',"ProductController@productPackages");
+        Route::get('/{id}',"ProductController@product");
+        Route::get('/package/{id}',"ProductController@productPackage");
+    });
+
+});
+
+
+
