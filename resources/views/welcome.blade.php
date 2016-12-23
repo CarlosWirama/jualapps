@@ -33,7 +33,8 @@
                 <h3>A URL For Every Design</h3>
                 <p>telolet telolet telolet telolet telolet telolet telolet telolet telolet telolet telolet telolet</p>
                 <button class="btn waves-effect waves-light">Lihat Produk</button>
-                <button class="btn white blue-text waves-effect waves-light"><i class="fa fa-btn fa-play-circle-o"></i>Tutorial pemakaian</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="blue-text" style="font-size: 16px"><i class="fa fa-btn fa-play-circle-o"></i>Tutorial pemakaian</a>
             </div>
         </div>
 
