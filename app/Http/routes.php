@@ -19,6 +19,8 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/product', 'ViewController@product')->name('product');
+
 Route::group(["prefix"=>"API", "namespace"=>"API"],function(){
     Route::group(["prefix"=>"/user"],function(){
         Route::get('/','UserController@allUser');

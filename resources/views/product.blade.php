@@ -4,9 +4,7 @@
 <!-- <div class="container"> -->
     <div class="row">
         <div class="center section black">
-            <h3 class="white-text">Temukan Digital Software Untuk<br>Peningkatan Bisnis</h3>
-            <button class="btn waves-effect waves-light">Lihat Produk</button>
-            <button class="btn waves-effect waves-light">Afiliasi</button>
+            <h3 class="white-text">Product</h3>
         </div>
 
 
